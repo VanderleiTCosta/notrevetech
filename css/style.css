@@ -1,0 +1,688 @@
+/* ==========================================================================
+   1. GERAL E VARIÁVEIS DE TEMA
+   ========================================================================== */
+:root {
+    --font-family: 'Poppins', sans-serif;
+    /* Cores do Tema Escuro (Padrão) */
+    --primary-color: #007BFF;
+    --primary-hover: #0056b3;
+    --bg-color: #0d1117;
+    --bg-secondary-color: #161b22;
+    --border-color: #30363d;
+    --text-color: #c9d1d9;
+    --text-light-color: #8b949e;
+    --headings-color: #ffffff;
+}
+
+body.light-theme {
+    /* Cores do Tema Claro */
+    --primary-color: #007BFF;
+    --primary-hover: #0056b3;
+    --bg-color: #ffffff;
+    --bg-secondary-color: #f6f8fa;
+    --border-color: #d0d7de;
+    --text-color: #24292f;
+    --text-light-color: #57606a;
+    --headings-color: #1f2328;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 600;
+    color: var(--headings-color);
+    margin-bottom: 0.8rem;
+}
+
+h1.page-title {
+    font-size: 3rem;
+    line-height: 1.2;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.2rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-light-color);
+}
+
+.section-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    font-size: 1.1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* ==========================================================================
+   2. HEADER E NAVEGAÇÃO
+   ========================================================================== */
+.main-header {
+    background-color: rgba(var(--bg-secondary-color), 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--headings-color);
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav ul li {
+    margin: 0 15px;
+}
+
+.main-nav ul li a {
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    color: var(--headings-color);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#theme-toggle i {
+    width: 22px;
+    height: 22px;
+    font-size: 22px; /* Adicionado */
+    line-height: 1; /* Adicionado */
+    color: var(--text-color); /* Adicionado */
+}
+
+.light-theme .icon-moon,
+.dark-theme .icon-sun {
+    display: block;
+}
+
+.light-theme .icon-sun,
+.dark-theme .icon-moon {
+    display: none;
+}
+
+.mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--headings-color);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   3. BOTÕES
+   ========================================================================== */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--headings-color);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-secondary-color);
+    border-color: var(--primary-color);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   4. LAYOUT DA PÁGINA PRINCIPAL (PORTAL)
+   ========================================================================== */
+.product-showcase {
+    padding: 60px 0;
+}
+
+.solution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.solution-card {
+    background-color: var(--bg-secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: left;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.solution-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.solution-card.is-coming-soon {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.solution-icon {
+    font-size: 48px; /* ALTERADO */
+    margin-bottom: 20px;
+    color: var(--primary-color); /* Adicionado */
+    transition: transform 0.3s;
+    display: inline-block; /* Adicionado */
+    width: 60px; /* Adicionado para manter o alinhamento */
+    text-align: center; /* Adicionado */
+}
+
+.solution-title {
+    font-size: 1.5rem;
+    color: var(--headings-color);
+    margin-bottom: 10px;
+}
+
+.solution-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.card-action-btn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.solution-card:hover .card-action-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+/* SEÇÃO "POR QUE ESCOLHER" */
+.why-us {
+    background-color: var(--bg-secondary-color);
+    text-align: center;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: left;
+}
+
+.feature-item {
+    background-color: var(--bg-color);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   5. PÁGINAS DE PREÇOS E DESENVOLVEDORES
+   ========================================================================== */
+.page-hero {
+    text-align: center;
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+    justify-content: center;
+}
+
+.product-selector-btn {
+    background-color: var(--bg-secondary-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-light-color);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.product-selector-btn:hover {
+    color: var(--headings-color);
+    border-color: var(--text-light-color);
+}
+
+.product-selector-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+.pricing-card {
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-card.featured {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+    position: relative;
+}
+
+.pricing-card ul {
+    list-style: none;
+    text-align: left;
+    margin: 20px 0;
+    flex-grow: 1;
+}
+
+pre {
+    background-color: #011627;
+    color: #d6deeb;
+    padding: 20px;
+    margin: 0;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    border-radius: 0 0 8px 8px;
+}
+
+/* ==========================================================================
+   6. FOOTER (NOVO E ORGANIZADO)
+   ========================================================================== */
+.main-footer {
+    background-color: var(--bg-secondary-color);
+    border-top: 1px solid var(--border-color);
+    padding: 60px 0 0 0;
+    color: var(--text-light-color);
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    display: grid;
+    /* Grid com 4 colunas, a primeira mais larga */
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 50px;
+}
+
+.footer-column h4 {
+    color: var(--headings-color);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: var(--text-light-color);
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.footer-about .logo {
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.footer-tagline {
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a i { /* ALTERADO de img para i */
+    font-size: 24px; /* ALTERADO */
+    color: var(--text-light-color); /* Adicionado */
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s, color 0.3s;
+}
+
+.social-links a i:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    color: var(--primary-color); /* Adicionado */
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.85rem;
+}
+
+.footer-legal-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-legal-links a {
+    color: var(--text-light-color);
+    transition: color 0.3s;
+}
+
+.footer-legal-links a:hover {
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   7. OUTROS COMPONENTES (MODAL, SCROLLBTN)
+   ========================================================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+    display: none;
+}
+
+.modal-content {
+    background-color: var(--bg-secondary-color);
+    padding: 40px;
+    border-radius: 12px;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    animation: scaleUp 0.3s ease;
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--text-light-color);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: var(--headings-color);
+}
+
+.modal-icon {
+    font-size: 60px; /* ALTERADO */
+    margin-bottom: 20px;
+    color: var(--primary-color); /* Adicionado */
+}
+
+.modal-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.modal-description {
+    font-size: 1.1rem;
+    color: var(--text-light-color);
+    margin-bottom: 30px;
+}
+
+.modal-features {
+    list-style: none;
+    text-align: left;
+    margin: 0 auto 30px auto;
+    max-width: 400px;
+    color: var(--text-color);
+}
+
+.modal-features li {
+    margin-bottom: 10px;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#scrollToTopBtn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   8. ANIMAÇÕES E RESPONSIVIDADE
+   ========================================================================== */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    h1.page-title {
+        font-size: 2.5rem;
+    }
+
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-secondary-color);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .main-nav.active {
+        display: block;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .main-header .btn-primary {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: block;
+    }
+
+    .pricing-card.featured {
+        transform: scale(1);
+    }
+
+    .footer-bottom {
+        justify-content: center;
+        text-align: center;
+    }
+
+    #scrollToTopBtn {
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+    }
+}
