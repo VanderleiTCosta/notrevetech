@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Notrevetec - Plataforma de Soluções em Tecnologia</title>
+    <title>
+      Notreve Tecnologia - Inovação e Escalabilidade para seu Negócio
+    </title>
     <meta
       name="description"
-      content="Explore as soluções da Notrevetec: APIs de WhatsApp e SMS, Cloud de alta performance e mais."
+      content="A Notreve Tecnologia é a plataforma unificada de soluções em comunicação, infraestrutura e pagamentos."
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,13 +17,21 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body class="dark-theme">
     <header class="main-header">
       <div class="container">
-        <a href="index.html" class="logo">Notrevetec</a>
+        <a href="index.html" class="logo">Notreve Tecnologia</a>
         <nav class="main-nav">
           <ul>
+            <li><a href="#plataformas">Plataformas</a></li>
             <li><a href="precos.html">Preços</a></li>
             <li><a href="desenvolvedores.html">Desenvolvedores</a></li>
             <li><a href="#contato">Contato</a></li>
@@ -36,10 +39,10 @@
         </nav>
         <div class="header-actions">
           <button id="theme-toggle" aria-label="Alterar tema">
-            <i class="fa-solid fa-moon icon-moon"></i>
             <i class="fa-solid fa-sun icon-sun"></i>
+            <i class="fa-solid fa-moon icon-moon"></i>
           </button>
-          <a href="#contato" class="btn btn-primary">Começar Agora</a>
+          <a href="#contato" class="btn btn-primary">Fale Conosco</a>
         </div>
         <button class="mobile-menu-button" aria-label="Abrir menu">
           &#9776;
@@ -48,42 +51,56 @@
     </header>
 
     <main>
-      <section class="product-showcase">
+      <section class="hero-section">
         <div class="container">
-          <h1 class="page-title">Nossos Produtos</h1>
-          <p class="section-subtitle">
-            Explore nossas soluções e escolha a ideal para o seu negócio.
-          </p>
-          <div class="solution-grid" id="product-grid-container"></div>
+          <div class="hero-content">
+            <span class="tagline">NOTREVE TECNOLOGIA LTDA</span>
+            <h1>
+              A infraestrutura tecnológica que impulsiona o seu crescimento.
+            </h1>
+            <p class="subtitle">
+              Nós criamos e gerenciamos as plataformas de comunicação, cloud e
+              pagamentos que permitem que sua empresa inove e escale sem
+              limites.
+            </p>
+            <a href="#plataformas" class="btn btn-primary"
+              >Conheça nossas soluções</a
+            >
+          </div>
         </div>
       </section>
 
-      <section class="why-us">
+      <section class="about-section">
         <div class="container">
-          <h2>Por que escolher a Plataforma Notrevetec?</h2>
-          <div class="features-grid">
-            <div class="feature-item fade-in-section">
-              <h4>Ecossistema Integrado</h4>
+          <div class="about-content">
+            <div class="about-text">
+              <h2>Nascemos para descomplicar a tecnologia.</h2>
               <p>
-                Soluções que conversam entre si, otimizando seus processos e
-                resultados de ponta a ponta.
+                A Notreve Tecnologia surgiu da necessidade de oferecer soluções
+                robustas, seguras e fáceis de integrar. Nossa missão é ser a
+                parceira estratégica que cuida da sua infraestrutura
+                tecnológica, para que você possa focar no que faz de melhor: o
+                seu negócio.
               </p>
             </div>
-            <div class="feature-item fade-in-section">
-              <h4>Tecnologia de Ponta</h4>
-              <p>
-                Utilizamos as melhores e mais seguras tecnologias do mercado
-                para garantir performance e confiabilidade.
-              </p>
-            </div>
-            <div class="feature-item fade-in-section">
-              <h4>Suporte Unificado</h4>
-              <p>
-                Um único ponto de contato com especialistas prontos para ajudar
-                a otimizar o uso de nossas ferramentas.
-              </p>
+            <div class="about-image">
+              <img
+                src="assets/about-illustration.svg"
+                alt="Ilustração de tecnologia e inovação"
+              />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="platforms-section" id="plataformas">
+        <div class="container">
+          <h2 style="text-align: center">Nossas Plataformas</h2>
+          <p class="section-subtitle">
+            Um ecossistema de soluções projetado para funcionar em harmonia.
+          </p>
+          <div class="solution-grid" id="product-grid-container">
+            </div>
         </div>
       </section>
     </main>
@@ -92,7 +109,7 @@
       <div class="container">
         <div class="footer-content">
           <div class="footer-column footer-about">
-            <a href="index.html" class="logo">Notrevetec</a>
+            <a href="index.html" class="logo">Notreve Tecnologia</a>
             <p class="footer-tagline">
               Potencializando a comunicação entre empresas e pessoas com
               tecnologia de ponta.
@@ -109,7 +126,6 @@
               ></a>
             </div>
           </div>
-
           <div class="footer-column">
             <h4>Soluções</h4>
             <ul>
@@ -125,30 +141,26 @@
               <li><a href="#">ChatBot com IA (Em Breve)</a></li>
             </ul>
           </div>
-
           <div class="footer-column">
             <h4>Empresa</h4>
             <ul>
               <li><a href="#">Sobre Nós</a></li>
               <li><a href="#">Carreiras</a></li>
-              <li><a href="#">Imprensa</a></li>
               <li><a href="#contato">Contato</a></li>
             </ul>
           </div>
-
           <div class="footer-column">
             <h4>Recursos</h4>
             <ul>
               <li><a href="desenvolvedores.html">Desenvolvedores</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Status da Plataforma</a></li>
               <li><a href="precos.html">Preços</a></li>
             </ul>
           </div>
         </div>
-
         <div class="footer-bottom">
-          <p>&copy; 2025 Notrevetec. Todos os direitos reservados.</p>
+          <p>
+            &copy; 2025 Notreve Tecnologia LTDA. Todos os direitos reservados.
+          </p>
           <div class="footer-legal-links">
             <a href="#">Termos de Serviço</a>
             <a href="#">Política de Privacidade</a>
@@ -163,7 +175,6 @@
         <div id="modal-body"></div>
       </div>
     </div>
-
     <button id="scrollToTopBtn" title="Voltar ao topo">&uarr;</button>
 
     <script src="js/data.js"></script>

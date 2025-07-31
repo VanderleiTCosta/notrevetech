@@ -1,60 +1,44 @@
+// js/main.js
 document.addEventListener("DOMContentLoaded", function () {
-  // --- ELEMENTOS GLOBAIS ---
   const modal = document.getElementById("solution-modal");
   const modalCloseBtn = document.getElementById("modal-close-btn");
   const modalBody = document.getElementById("modal-body");
 
-  // =========================================================================
-  // INICIALIZAÇÃO GERAL
-  // =========================================================================
   function init() {
-    // Funções globais de UI
     setupMobileMenu();
     setupScrollToTop();
     setupThemeToggle();
-
-    // Renderizadores de conteúdo dinâmico de cada página
-    renderHomePage();
+    initHomePage();
     initDeveloperPage();
     initPricingPage();
-
-    // Animações devem ser as últimas a serem preparadas, após o conteúdo existir
     setupScrollAnimations();
-
-    // Listeners do Modal
     if (modal) {
       modalCloseBtn.addEventListener("click", closeModal);
       modal.addEventListener("click", (e) => {
         if (e.target === modal) {
-          // Fecha se clicar fora do conteúdo
           closeModal();
         }
       });
     }
   }
 
-  // =========================================================================
-  // LÓGICA DO MODAL DE PRODUTOS
-  // =========================================================================
   function openModal(productId) {
-    const solution = solutionsData.find(s => s.id === productId);
+    const solution = solutionsData.find((s) => s.id === productId);
     if (!solution || !modal) return;
-
-    const featuresHTML = solution.mainFeatures.map(feature => `<li>✓ ${feature}</li>`).join('');
-
-    // ALTERADO de <img> para <i>
+    const featuresHTML = solution.mainFeatures
+      .map((feature) => `<li><i class="fa-solid fa-check"></i>${feature}</li>`)
+      .join("");
     const modalHTML = `
-        <i class="modal-icon ${solution.icon}"></i>
-        <h2 class="modal-title">${solution.title}</h2>
-        <p class="modal-description">${solution.description}</p>
-        <ul class="modal-features">${featuresHTML}</ul>
-        <a href="${solution.pageUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary modal-cta">Visitar Site do Produto &rarr;</a>
-    `;
-
+            <i class="modal-icon ${solution.icon}"></i>
+            <h2 class="modal-title">${solution.title}</h2>
+            <p class="modal-description">${solution.description}</p>
+            <ul class="modal-features">${featuresHTML}</ul>
+            <a href="${solution.pageUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary modal-cta">Visitar Site do Produto &rarr;</a>
+        `;
     modalBody.innerHTML = modalHTML;
-    document.body.classList.add('modal-open');
-    modal.style.display = 'flex';
-}
+    document.body.classList.add("modal-open");
+    modal.style.display = "flex";
+  }
 
   function closeModal() {
     if (!modal) return;
@@ -62,66 +46,63 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.style.display = "none";
   }
 
-  // =========================================================================
-  // RENDERIZADORES DE PÁGINA
-  // =========================================================================
-  function renderHomePage() {
-    const container = document.getElementById('product-grid-container');
+  function initHomePage() {
+    renderProductGrid();
+  }
+
+  function renderProductGrid() {
+    const container = document.getElementById("product-grid-container");
     if (!container) return;
-
-    container.innerHTML = '';
-    solutionsData.forEach(solution => {
-        const comingSoonClass = solution.isComingSoon ? 'is-coming-soon' : '';
-
-        // ALTERADO de <img> para <i>
-        const cardHTML = `
-            <div class="solution-card fade-in-section ${comingSoonClass}" data-id="${solution.id}">
-                <i class="solution-icon ${solution.icon}"></i>
-                <h3 class="solution-title">${solution.title}</h3>
-                <p class="solution-description">${solution.description}</p>
-                <button class="card-action-btn">${solution.isComingSoon ? 'Em Breve' : 'Ver Detalhes'}</button>
-            </div>`;
-        container.innerHTML += cardHTML;
+    container.innerHTML = "";
+    solutionsData.forEach((solution) => {
+      const cardHTML = `
+                <div class="solution-card fade-in-section ${
+                  solution.isComingSoon ? "is-coming-soon" : ""
+                }" data-id="${solution.id}">
+                    <i class="solution-icon ${solution.icon}"></i>
+                    <h3 class="solution-title">${solution.title}</h3>
+                    <p class="solution-description">${solution.description}</p>
+                    <button class="card-action-btn">${
+                      solution.isComingSoon ? "Em Breve" : "Ver Detalhes"
+                    }</button>
+                </div>`;
+      container.insertAdjacentHTML("beforeend", cardHTML);
     });
-
-    container.addEventListener('click', (e) => {
-        const card = e.target.closest('.solution-card');
-        if (card && !card.classList.contains('is-coming-soon')) {
-            openModal(card.dataset.id);
+    container.querySelectorAll(".card-action-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const card = button.closest(".solution-card");
+        if (card && !card.classList.contains("is-coming-soon")) {
+          openModal(card.dataset.id);
         }
+      });
     });
-}
+  }
 
   function initPricingPage() {
     const pricingContainer = document.getElementById(
       "pricing-selector-container"
     );
-    if (!pricingContainer) return; // Só executa na pág de preços
-
+    if (!pricingContainer) return;
     const pricingGrid = document.getElementById("pricing-grid-container");
-
     const activeSolutions = solutionsData.filter(
       (s) => !s.isComingSoon && s.pricingTiers && s.pricingTiers.length > 0
     );
-
     activeSolutions.forEach((solution) => {
       pricingContainer.innerHTML += `<button class="product-selector-btn" data-id="${solution.id}">${solution.title}</button>`;
     });
     if (packagesData && packagesData.length > 0) {
       pricingContainer.innerHTML += `<button class="product-selector-btn" data-id="packages">Pacotes Completos</button>`;
     }
-
     pricingContainer.addEventListener("click", (e) => {
       const button = e.target.closest(".product-selector-btn");
       if (!button) return;
-
       pricingContainer
         .querySelectorAll(".product-selector-btn")
         .forEach((btn) => btn.classList.remove("active"));
       button.classList.add("active");
       renderPricingTiersFor(button.dataset.id, pricingGrid);
     });
-
     if (pricingContainer.firstChild) {
       pricingContainer.firstChild.click();
     }
@@ -133,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
       id === "packages"
         ? packagesData
         : solutionsData.find((s) => s.id === id)?.pricingTiers || [];
-
     tiers.forEach((tier) => {
       const featuredClass = tier.isFeatured ? "featured" : "";
       const featuredTag = tier.isFeatured
@@ -143,36 +123,32 @@ document.addEventListener("DOMContentLoaded", function () {
         ? `<span class="price-period">${tier.period}</span>`
         : "";
       const featuresList = tier.features.map((f) => `<li>${f}</li>`).join("");
-
-      container.innerHTML += `
-                <div class="pricing-card ${featuredClass}">
-                    ${featuredTag}<h3>${tier.name}</h3><p class="price">${
+      container.innerHTML += `<div class="pricing-card ${featuredClass}">${featuredTag}<h3>${
+        tier.name
+      }</h3><p class="price">${
         tier.price
-      }${pricePeriod}</p>
-                    <p class="price-desc">${
-                      tier.description
-                    }</p><ul>${featuresList}</ul>
-                    <a href="${tier.ctaLink}" class="btn ${
+      }${pricePeriod}</p><p class="price-desc">${
+        tier.description
+      }</p><ul>${featuresList}</ul><a href="${tier.ctaLink}" class="btn ${
         tier.isFeatured ? "btn-primary" : "btn-secondary"
-      }">${tier.ctaText}</a>
-                </div>`;
+      }">${tier.ctaText}</a></div>`;
     });
   }
 
   function initDeveloperPage() {
     const devPage = document.getElementById("developer-page-content");
-    if (!devPage) return; // Só executa na pág de dev
-
+    if (!devPage) return;
     const selector = devPage.querySelector("#product-selector-container");
     const display = devPage.querySelector("#code-display-container");
-
     const solutionsWithCode = solutionsData.filter(
-      (s) => !s.isComingSoon && s.codeExamples && s.codeExamples.length > 0
+      (s) =>
+        !s.isComingSoon &&
+        s.developerPage &&
+        s.developerPage.codeExamples.length > 0
     );
     solutionsWithCode.forEach((s) => {
       selector.innerHTML += `<button class="product-selector-btn" data-id="${s.id}">${s.title}</button>`;
     });
-
     selector.addEventListener("click", (e) => {
       const button = e.target.closest(".product-selector-btn");
       if (!button) return;
@@ -182,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
       button.classList.add("active");
       renderCodeExamplesFor(button.dataset.id, display);
     });
-
     if (selector.firstChild) {
       selector.firstChild.click();
     }
@@ -190,34 +165,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function renderCodeExamplesFor(id, container) {
     const solution = solutionsData.find((s) => s.id === id);
-    if (
-      !solution ||
-      !solution.codeExamples ||
-      solution.codeExamples.length === 0
-    ) {
+    if (!solution || !solution.developerPage) {
       container.innerHTML =
-        "<p>Exemplos de código para esta solução estarão disponíveis em breve.</p>";
+        "<p class='code-placeholder'>Selecione uma API para ver os exemplos de código.</p>";
       return;
     }
-
-    const tabs = solution.codeExamples
-      .map(
-        (ex, i) =>
-          `<button class="tab-link ${
-            i === 0 ? "active" : ""
-          }" data-tab="${id}-${ex.language}">${ex.language}</button>`
-      )
-      .join("");
-    const contents = solution.codeExamples
-      .map(
-        (ex, i) =>
-          `<div id="${id}-${ex.language}" class="tab-content ${
-            i === 0 ? "active" : ""
-          }"><pre><code>${ex.code.trim()}</code></pre></div>`
-      )
-      .join("");
-
-    container.innerHTML = `<div class="code-example-container"><div class="code-tabs">${tabs}</div><div class="code-content">${contents}</div></div>`;
+    const { title, description, codeExamples } = solution.developerPage;
+    let html = `<h2>${title}</h2><p class="section-subtitle">${description}</p>`;
+    if (codeExamples && codeExamples.length > 0) {
+      const tabs = codeExamples
+        .map(
+          (ex, i) =>
+            `<button class="tab-link ${
+              i === 0 ? "active" : ""
+            }" data-tab="${id}-${ex.language}">${ex.language}</button>`
+        )
+        .join("");
+      const contents = codeExamples
+        .map(
+          (ex, i) =>
+            `<div id="${id}-${ex.language}" class="tab-content ${
+              i === 0 ? "active" : ""
+            }"><pre><code>${ex.code.trim()}</code></pre></div>`
+        )
+        .join("");
+      html += `<div class="code-example-container"><div class="code-tabs">${tabs}</div><div class="code-content">${contents}</div></div>`;
+    }
+    container.innerHTML = html;
     setupLanguageTabs(container);
   }
 
@@ -239,15 +213,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // =========================================================================
-  // FUNÇÕES UTILITÁRIAS
-  // =========================================================================
   function setupMobileMenu() {
     const btn = document.querySelector(".mobile-menu-button"),
       nav = document.querySelector(".main-nav");
     if (btn && nav)
       btn.addEventListener("click", () => nav.classList.toggle("active"));
   }
+
   function setupScrollToTop() {
     const btn = document.getElementById("scrollToTopBtn");
     if (btn) {
@@ -262,6 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }
   }
+
   function setupThemeToggle() {
     const btn = document.getElementById("theme-toggle"),
       body = document.body;
@@ -277,6 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     applyTheme(localStorage.getItem("theme") || "dark-theme");
   }
+
   function setupScrollAnimations() {
     const elements = document.querySelectorAll(".fade-in-section");
     if (elements.length === 0) return;
@@ -293,7 +267,5 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     elements.forEach((el) => observer.observe(el));
   }
-
-  // --- RODA TUDO ---
   init();
 });
