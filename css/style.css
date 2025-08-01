@@ -3,16 +3,13 @@
    ========================================================================== */
 :root {
     --font-family: 'Poppins', sans-serif;
-    /* Nova Paleta de Cores */
     --primary-color: #8A2BE2;
-    /* Roxo Principal (Ex: Violeta Azulado) */
+    /* Roxo Principal */
     --primary-hover: #7b25c9;
     --accent-color: #00F5D4;
-    /* Ciano/Verde para detalhes e CTAs */
+    /* Ciano/Verde */
     --bg-color: #0c0a13;
-    /* Fundo escuro, quase preto com tom roxo */
     --bg-secondary-color: #1a1625;
-    /* Cor de fundo para seções e cards */
     --border-color: #3a324f;
     --text-color: #d8d4e4;
     --text-light-color: #9d97b0;
@@ -31,7 +28,6 @@ body.light-theme {
     --headings-color: #1a1625;
 }
 
-/* --- Estilos Gerais --- */
 * {
     margin: 0;
     padding: 0;
@@ -115,9 +111,8 @@ section {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--headings-color);
+    width: 150px;
+    height: auto;
 }
 
 .main-nav ul {
@@ -235,7 +230,7 @@ section {
     display: flex;
     align-items: center;
     text-align: center;
-    padding: 120px 0;
+    padding: 40px 0;
 }
 
 .hero-content .tagline {
@@ -350,26 +345,6 @@ section {
     border-color: var(--accent-color);
 }
 
-.why-us {
-    background-color: var(--bg-color);
-    text-align: center;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-    text-align: left;
-}
-
-.feature-item {
-    background-color: var(--bg-secondary-color);
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
 /* ==========================================================================
    5. PÁGINAS GENÉRICAS (PREÇOS, DEV)
    ========================================================================== */
@@ -380,12 +355,13 @@ section {
 }
 
 .dev-intro-section {
-    padding-top: 0;
+    padding-top: 100px;
+    padding-bottom: 0;
     text-align: center;
 }
 
 .dev-section {
-    padding-top: 0;
+    padding-top: 60px;
 }
 
 .product-selector {
@@ -393,8 +369,6 @@ section {
     flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 40px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 20px;
     justify-content: center;
 }
 
@@ -416,9 +390,9 @@ section {
 }
 
 .product-selector-btn.active {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: #fff;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #000;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
 }
@@ -455,11 +429,14 @@ section {
 
 .code-example-container {
     margin-top: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .code-tabs {
     display: flex;
-    background-color: var(--bg-color);
+    background-color: var(--bg-secondary-color);
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -487,7 +464,13 @@ pre {
     overflow-x: auto;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9rem;
-    border-radius: 0 0 8px 8px;
+}
+
+.code-placeholder {
+    color: var(--text-light-color);
+    font-style: italic;
+    text-align: center;
+    padding: 30px 0;
 }
 
 /* ==========================================================================
@@ -600,7 +583,6 @@ pre {
     background-color: rgba(12, 10, 19, 0.7);
     backdrop-filter: blur(8px);
     z-index: 2000;
-    display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -803,5 +785,86 @@ body.modal-open {
         right: 15px;
         width: 45px;
         height: 45px;
+    }
+}
+/* ==========================================================================
+   ESTILOS ADICIONAIS PARA A SECÇÃO "PRÓXIMOS PASSOS" (PÁGINA DE DESENVOLVEDORES)
+   ========================================================================== */
+.next-steps-section {
+    background-color: var(--bg-color); /* Usando a cor de fundo principal para um contraste sutil */
+    padding: 80px 20px; /* Aumentando o espaçamento vertical */
+    text-align: center; /* Centralizando o texto */
+}
+
+.next-steps-section h2 {
+    color: var(--headings-color);
+    margin-bottom: 20px;
+}
+
+.next-steps-section .section-subtitle {
+    color: var(--text-light-color);
+    margin-bottom: 40px;
+    font-size: 1rem;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Layout responsivo com largura mínima */
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 40px; /* Adicionando espaço abaixo da grid */
+}
+
+.step-card {
+    background-color: var(--bg-secondary-color);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.step-card h3 {
+    color: var(--headings-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.step-card p {
+    color: var(--text-light-color);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.cta-container {
+    margin-top: 40px;
+}
+
+.cta-container .btn-primary {
+    font-size: 1.1rem;
+    padding: 14px 30px;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .steps-grid {
+        grid-template-columns: 1fr; /* Um passo por linha em telas menores */
+    }
+    .next-steps-section {
+        padding: 60px 20px;
     }
 }
