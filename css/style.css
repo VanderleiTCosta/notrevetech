@@ -693,7 +693,7 @@ body.modal-open {
     z-index: 99;
     border: none;
     background-color: var(--accent-color);
-    color: white;
+    color: black;
     cursor: pointer;
     padding: 15px;
     border-radius: 50%;
@@ -704,7 +704,7 @@ body.modal-open {
 }
 
 #scrollToTopBtn:hover {
-    background-color: var(--primary-hover);
+    background-color: var(--accent-color);
     transform: translateY(-2px);
 }
 
